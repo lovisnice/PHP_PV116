@@ -27,7 +27,7 @@ const CategoryEditPage = () => {
     const [form] = Form.useForm(); // Create form instance
 
     useEffect(() => {
-        axios.get<ICategoryItem>(`http://127.0.0.1:8000/api/categories/edit/${id}`)
+        axios.get<ICategoryItem>(`http://127.0.0.1:8000/api/categories/getById/${id}`)
             .then(resp => {
                 form.setFieldsValue(resp.data);
                 setImageURL(`http://127.0.0.1:8000/upload/50_${resp.data.image}`);
@@ -39,6 +39,7 @@ const CategoryEditPage = () => {
         console.log('Success:', values);
         console.log('file:', file);
         if (file == null) {
+            axios.get<File>
             setErrorMessage("Оберіть фото!");
             return;
         }
